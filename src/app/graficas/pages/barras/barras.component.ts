@@ -18,6 +18,7 @@ export class BarrasComponent {
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
+    // indexAxis: 'y',
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {},
@@ -44,7 +45,8 @@ export class BarrasComponent {
     labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
     datasets: [
       { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
+      { data: [58, 28, 10, 39, 16, 57, 25], label: 'Series C' },
     ]
   };
 
@@ -67,6 +69,23 @@ export class BarrasComponent {
       56,
       Math.round(Math.random() * 100),
       40];
+    this.barChartData.datasets[1].data = [
+      59,
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      80,
+      56,
+      Math.round(Math.random() * 100),
+      40];
+    this.barChartData.datasets[2].data = [
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+      Math.round(Math.random() * 100),
+    ];
 
     this.chart?.update();
   }
