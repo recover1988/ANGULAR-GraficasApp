@@ -2,9 +2,16 @@
 <hr />
 <div class="row">
   <div class="col-md-6">
-    <app-grafica-barra></app-grafica-barra>
+    <app-grafica-barra
+      [horizontal]="true"
+      [inputDatasets]="productoData.datasets"
+      [inputLabels]="productoData.labels"
+    ></app-grafica-barra>
   </div>
   <div class="col-md-6">
-    <app-grafica-barra></app-grafica-barra>
+    <app-grafica-barra
+      [inputDatasets]="proveedoresData.datasets"
+      [inputLabels]="proveedoresData.labels"
+    ></app-grafica-barra>
   </div>
 </div>

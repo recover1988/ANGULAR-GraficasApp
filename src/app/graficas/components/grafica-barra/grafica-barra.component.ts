@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Component, Input, ViewChild, OnInit } from '@angular/core';
+import { ChartConfiguration, ChartData, ChartDataset, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
@@ -10,8 +10,14 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
   styles: [
   ]
 })
-export class GraficaBarraComponent {
+export class GraficaBarraComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
+
+
+  @Input() horizontal: boolean = false;
+  @Input() inputLabels!: any[] | unknown[] | undefined;
+  @Input() inputDatasets!: ChartDataset<any, any>[];
 
   public barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -19,71 +25,35 @@ export class GraficaBarraComponent {
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
       x: {},
-      y: {
-        min: 10
-      }
+      y: {}
     },
     plugins: {
       legend: {
         display: true,
       },
       datalabels: {
-        anchor: 'end',
-        align: 'end'
+        anchor: 'center',
+        align: 'center',
+        color: 'white'
       }
     }
   };
-  public barChartType: ChartType = 'bar';
+  public barChartType: ChartType = 'bar'; // los tipos de gráfica --> pie, buble, etc
   public barChartPlugins = [
     DataLabelsPlugin
   ];
-
   public barChartData: ChartData<'bar'> = {
-    labels: ['2006', '2007', '2008', '2009', '2010', '2011', '2012'],
-    datasets: [
-      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-      { data: [58, 28, 10, 39, 16, 57, 25], label: 'Series C' },
-    ]
+    labels: [],
+    datasets: []
   };
 
-  // events
-  // public chartClicked({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-  //   console.log(event, active);
-  // }
+  ngOnInit(): void {
+    if (this.horizontal) {
+      this.barChartOptions!.indexAxis = 'y'; // angular confía en mí siempre vas a tener algo ahí!
+    }
+    this.barChartData.datasets = this.inputDatasets;
+    this.barChartData.labels = this.inputLabels;
+  };
 
-  // public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
-  //   console.log(event, active);
-  // }
 
-  public randomize(): void {
-    // Only Change 3 values
-    this.barChartData.datasets[0].data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      Math.round(Math.random() * 100),
-      56,
-      Math.round(Math.random() * 100),
-      40];
-    this.barChartData.datasets[1].data = [
-      59,
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      80,
-      56,
-      Math.round(Math.random() * 100),
-      40];
-    this.barChartData.datasets[2].data = [
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-      Math.round(Math.random() * 100),
-    ];
-
-    this.chart?.update();
-  }
 }
