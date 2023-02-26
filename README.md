@@ -1,5 +1,64 @@
 # GraficasApp
 
+Esta aplicacion usa la libreria de:
+
+```
+https://valor-software.com/ng2-charts/#GeneralInfo
+```
+
+## Rutas y Lazyload
+
+```
+// graficas-routing.module.ts
+
+const routes: Routes = [
+  {
+    path: '',
+    children: [
+      { path: 'barra', component: BarrasComponent },
+      { path: 'barra-doble', component: BarrasDobleComponent },
+      { path: 'dona', component: DonaComponent },
+      { path: 'dona-http', component: DonaHttpComponent },
+      { path: '**', redirectTo: 'barra' },
+    ]
+  }
+];
+```
+
+Las rutas se generan con el `children` para poder usar las rutas dentro del componente si queremos.
+
+```
+// app-routing.module.ts
+
+const routes: Routes = [
+  {
+    path: 'graficas',
+    loadChildren: () => import('./graficas/graficas.module').then(g => g.GraficasModule)
+  },
+  { path: '**', redirectTo: 'graficas' }
+];
+```
+
+La carga peresoza se relaliza mediante el `loadChildren`
+
+## Menu dinamico
+
+```
+<ul class="list-group">
+  <li
+    *ngFor="let item of menu"
+    class="list-group-item"
+    [routerLink]="item.ruta"
+    routerLinkActive="active"
+  >
+    {{ item.texto }}
+  </li>
+</ul>
+
+```
+
+Del lado del .ts se secribe el array menu con sus propiedades.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
 ## Development server
