@@ -1,1 +1,19 @@
-<p>grafica-barra works!</p>
+<div class="row">
+  <div class="col">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [plugins]="barChartPlugins"
+      [type]="barChartType"
+      >
+    </canvas>
+
+    <button class="btn btn-primary float-end" (click)="randomize()">
+      Actualizar
+    </button>
+  </div>
+</div>
+
+<!-- (chartHover)="chartHovered($event)"
+(chartClick)="chartClicked($event)" -->

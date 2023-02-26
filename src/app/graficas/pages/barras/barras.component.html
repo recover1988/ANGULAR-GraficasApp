@@ -1,3 +1,6 @@
+<h1>Graficas de Barras</h1>
+<hr />
+
 <div class="row">
   <div class="col">
     <canvas
@@ -6,9 +9,7 @@
       [options]="barChartOptions"
       [plugins]="barChartPlugins"
       [type]="barChartType"
-      (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)"
-    >
+      >
     </canvas>
 
     <button class="btn btn-primary float-end" (click)="randomize()">
@@ -16,3 +17,6 @@
     </button>
   </div>
 </div>
+
+<!-- (chartHover)="chartHovered($event)"
+(chartClick)="chartClicked($event)" -->
