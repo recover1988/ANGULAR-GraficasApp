@@ -59,6 +59,41 @@ La carga peresoza se relaliza mediante el `loadChildren`
 
 Del lado del .ts se secribe el array menu con sus propiedades.
 
+## Intalar ng2-charts
+
+1 Instalar `ng2-charts` usando npm:
+
+```
+npm install --save ng2-charts
+```
+
+2 Intalar la libreria del `Chart.js` :
+
+```
+npm install --save chart.js
+```
+
+### Usar la Api
+
+```
+import { NgChartsModule } from 'ng2-charts';
+
+// In your App's module:
+imports: [
+  NgChartsModule
+]
+```
+
+### Instalar npm DataLabelsPlugin
+
+```
+// para este import, necesitamos instalar con npm:
+// npm i chartjs-plugin-datalabels
+import DataLabelsPlugin from 'chartjs-plugin-datalabels';
+```
+
+Importar el modulo `NgChartsModule`.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
 ## Development server
