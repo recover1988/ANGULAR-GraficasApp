@@ -94,6 +94,41 @@ import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 Importar el modulo `NgChartsModule`.
 
+## Servidor
+
+Para levantar el servidor de pruebas hay que usar:
+
+```
+https://www.npmjs.com/package/json-server
+
+```
+
+Instalarlo con el npm:
+
+```
+npm install -g json-server
+```
+
+Luego abri el cmd en la carpeta del `db.json` y escribir:
+
+```
+json-server --watch db.json
+```
+
+La info del `db.json` es:
+
+```
+{
+    "grafica": {
+        "facebook": 2700,
+        "youtube": 2000,
+        "whatsapp": 1400,
+        "facebook-messenger": 1350,
+        "instagram": 1123
+    }
+}
+```
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
 
 ## Development server
