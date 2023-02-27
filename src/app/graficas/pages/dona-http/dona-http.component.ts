@@ -14,32 +14,25 @@ export class DonaHttpComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.graficasService.getUsuariosRedesSociales()
-      .subscribe(data => {
-        console.log(data)
-        const labels = Object.keys(data);
-        const values = Object.values(data);
+    // this.graficasService.getUsuariosRedesSociales()
+    //   .subscribe(data => {
+    //     console.log(data)
+    //     const labels = Object.keys(data);
+    //     const values = Object.values(data);
+    //     this.doughnutChartLabels.push(...labels);
+    //     this.doughnutChartDatasets.push({ data: values })
+    //   })
+    this.graficasService.getUsuariosRedesSocialesDonaData()
+      .subscribe(({ labels, values }) => {
         this.doughnutChartLabels.push(...labels);
-        this.doughnutChartDatasets.push({data:values})
-      })
+        this.doughnutChartDatasets.push({ data: values })
 
+      })
 
   }
 
-  public doughnutChartLabels: string[] = [
-    // 'Download Sales', 'In-Store Sales', 'Mail-Order Sales'
-  ];
-  public doughnutChartDatasets: ChartDataset<"doughnut", number[]>[] = [
-    // {
-    //   data: [350, 450, 100],
-    //   backgroundColor: [
-    //     '#8338ec',
-    //     '#ff006e',
-    //     '#ffd60a'
-    //   ],
-    // },
-
-  ];
+  public doughnutChartLabels: string[] = [];
+  public doughnutChartDatasets: ChartDataset<"doughnut", number[]>[] = [];
   public doughnutChartData: ChartData<'doughnut'> = {
     labels: this.doughnutChartLabels,
     datasets: this.doughnutChartDatasets,
